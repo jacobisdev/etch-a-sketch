@@ -16,11 +16,7 @@ body {
 }
 
 .square {
-    border: .1px solid black;
+    border: .1px solid rgb(128, 79, 79);
     box-sizing: border-box;
     aspect-ratio: 1;
-}
-
-.colored {
-    background-color: black;
 }

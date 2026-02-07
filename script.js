@@ -29,11 +29,20 @@ btnNewGrid.addEventListener('click', () => {
     renderGrid(gridSize);
 })
 
+const genRandomRGB = (opacity) => {
+    return `rgb(${Math.floor(Math.random() * 255)}, 
+                ${Math.floor(Math.random() * 255)}, 
+                ${Math.floor(Math.random() * 255)}, 
+                ${opacity})`
+}
+
 grid.addEventListener('mouseover', (event) => {
     const square = event.target;
-    // if (event.target.classList.contains('square')) square = event.target;
-
     const isColored = square.classList.contains('colored');
 
-    (!isColored) ? square.classList.toggle('colored') : square;
+    if (!isColored) {
+        square.classList.add('colored')
+        return square.style.backgroundColor = genRandomRGB(.1);
+    }
+
 })
