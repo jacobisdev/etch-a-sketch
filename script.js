@@ -7,7 +7,6 @@ const renderGrid = (size) => {
     const gridWidth = 512;
     grid.innerHTML = '';
     grid.style.width = `${gridWidth}px`;
-    grid.style.height = `${gridWidth}px`;
     for (let i = 0; i < size * size; i++) {
         const square = document.createElement('div');
         square.classList.toggle('square');
@@ -33,7 +32,19 @@ const genRandomRGB = (opacity) => {
     return `rgb(${Math.floor(Math.random() * 255)}, 
                 ${Math.floor(Math.random() * 255)}, 
                 ${Math.floor(Math.random() * 255)}, 
-                ${opacity})`
+                ${opacity})`;
+}
+
+const increaseColorOpacity = (rgbColor) => {
+    if (!rgbColor.split(',')[3]) return;
+
+    let opacity = rgbColor.split(',')[3].split(')')[0];
+    opacity = +opacity + .1 + ')';
+    
+    rgbColor = rgbColor.split(',');
+    rgbColor[3] = ' ' + opacity;
+
+    return rgbColor.join();
 }
 
 grid.addEventListener('mouseover', (event) => {
@@ -41,8 +52,9 @@ grid.addEventListener('mouseover', (event) => {
     const isColored = square.classList.contains('colored');
 
     if (!isColored) {
-        square.classList.add('colored')
+        square.classList.add('colored');
         return square.style.backgroundColor = genRandomRGB(.1);
     }
 
+    square.style.backgroundColor = increaseColorOpacity(square.style.backgroundColor);
 })

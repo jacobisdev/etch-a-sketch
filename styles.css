@@ -13,6 +13,7 @@ body {
 .grid {
     display: flex;
     flex-wrap: wrap;
+    aspect-ratio: 1;
 }
 
 .square {
