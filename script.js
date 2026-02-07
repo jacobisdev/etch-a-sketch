@@ -5,7 +5,7 @@ let gridSize = 16;
 
 const renderGrid = (size) => {
     grid.innerHTML = '';
-    grid.style.maxWidth = `${size * 16}px`
+    grid.style.width = `${size * 16}px`;
     for (let i = 0; i < size; i++) {
         // const column = document.createElement('div');
         // column.classList.toggle('column');
@@ -13,6 +13,7 @@ const renderGrid = (size) => {
         for (let j = 0; j < size; j++) {
             const square = document.createElement('div');
             square.classList.toggle('square');
+            square.style.width = `16px`
             grid.appendChild(square);
         }
     }
@@ -21,7 +22,7 @@ const renderGrid = (size) => {
 
 btnNewGrid.addEventListener('click', () => {
     gridSize = +prompt('Select the desired grid size');
-    let renderIsAllowed = gridSize >= 8 && gridSize <= 128;
+    const renderIsAllowed = gridSize >= 8 && gridSize <= 128;
     
     if (!renderIsAllowed) {
         return alert('Introduce a number between 8 and 128');
@@ -32,4 +33,10 @@ btnNewGrid.addEventListener('click', () => {
 
 renderGrid(gridSize);
 
-const squares = document.querySelectorAll('square');
+grid.addEventListener('mouseover', (event) => {
+    const square = event.target;
+
+    const isColored = square.classList.contains('colored');
+
+    (!isColored) ? square.classList.toggle('colored') : square;
+})

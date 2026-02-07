@@ -16,11 +16,11 @@ body {
 }
 
 .square {
-    width: 16px;
-    height: 16px;
-    outline: .1px solid black;
+    border: .1px solid black;
+    box-sizing: border-box;
+    aspect-ratio: 1;
+}
 
-    &:hover {
-        background-color: black;
-    }
+.colored {
+    background-color: black;
 }
