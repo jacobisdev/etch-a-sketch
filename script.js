@@ -28,23 +28,10 @@ btnNewGrid.addEventListener('click', () => {
     renderGrid(gridSize);
 })
 
-const genRandomRGB = (opacity) => {
+const genRandomRGB = () => {
     return `rgb(${Math.floor(Math.random() * 255)}, 
                 ${Math.floor(Math.random() * 255)}, 
-                ${Math.floor(Math.random() * 255)}, 
-                ${opacity})`;
-}
-
-const increaseColorOpacity = (rgbColor) => {
-    if (!rgbColor.split(',')[3]) return;
-
-    let opacity = rgbColor.split(',')[3].split(')')[0];
-    opacity = +opacity + .1 + ')';
-    
-    rgbColor = rgbColor.split(',');
-    rgbColor[3] = ' ' + opacity;
-
-    return rgbColor.join();
+                ${Math.floor(Math.random() * 255)})`;
 }
 
 grid.addEventListener('mouseover', (event) => {
@@ -53,8 +40,8 @@ grid.addEventListener('mouseover', (event) => {
 
     if (!isColored) {
         square.classList.add('colored');
-        return square.style.backgroundColor = genRandomRGB(.1);
+        square.style.backgroundColor = genRandomRGB();
+        return square.style.opacity = .1;
     }
-
-    square.style.backgroundColor = increaseColorOpacity(square.style.backgroundColor);
+    square.style.opacity = Math.min(1, +square.style.opacity + .1);
 })
