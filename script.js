@@ -4,21 +4,18 @@ const btnNewGrid = document.querySelector('.btn-grid');
 let gridSize = 16;
 
 const renderGrid = (size) => {
+    const gridWidth = 512;
     grid.innerHTML = '';
-    grid.style.width = `${size * 16}px`;
-    for (let i = 0; i < size; i++) {
-        // const column = document.createElement('div');
-        // column.classList.toggle('column');
-        // grid.appendChild(column);
-        for (let j = 0; j < size; j++) {
-            const square = document.createElement('div');
-            square.classList.toggle('square');
-            square.style.width = `16px`
-            grid.appendChild(square);
-        }
+    grid.style.width = `${gridWidth}px`;
+    for (let i = 0; i < size * size; i++) {
+        const square = document.createElement('div');
+        square.classList.toggle('square');
+        square.style.width = `${Math.round(gridWidth / size)}px`
+        grid.appendChild(square);
     }
-
 }
+
+renderGrid(gridSize);
 
 btnNewGrid.addEventListener('click', () => {
     gridSize = +prompt('Select the desired grid size');
@@ -31,10 +28,9 @@ btnNewGrid.addEventListener('click', () => {
     renderGrid(gridSize);
 })
 
-renderGrid(gridSize);
-
 grid.addEventListener('mouseover', (event) => {
     const square = event.target;
+    // if (event.target.classList.contains('square')) square = event.target;
 
     const isColored = square.classList.contains('colored');
 
