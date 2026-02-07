@@ -41,7 +41,6 @@ grid.addEventListener('mouseover', (event) => {
     if (!isColored) {
         square.classList.add('colored');
         square.style.backgroundColor = genRandomRGB();
-        return square.style.opacity = .1;
     }
     square.style.opacity = Math.min(1, +square.style.opacity + .1);
 })
