@@ -4,7 +4,7 @@ const btnNewGrid = document.querySelector('.btn-grid');
 let gridSize = 16;
 
 const renderGrid = (size) => {
-    const gridWidth = 512;
+    const gridWidth = 1024;
     grid.innerHTML = '';
     grid.style.width = `${gridWidth}px`;
     for (let i = 0; i < size * size; i++) {
@@ -35,12 +35,13 @@ const genRandomRGB = () => {
 }
 
 grid.addEventListener('mouseover', (event) => {
-    const square = event.target;
+    let square = (event.target.classList.contains('square')) ? event.target : square;
     const isColored = square.classList.contains('colored');
 
     if (!isColored) {
         square.classList.add('colored');
         square.style.backgroundColor = genRandomRGB();
+        square.style.border = 'none';
     }
     square.style.opacity = Math.min(1, +square.style.opacity + .1);
 })
