@@ -7,10 +7,11 @@ const renderGrid = (size) => {
     const gridWidth = 512;
     grid.innerHTML = '';
     grid.style.width = `${gridWidth}px`;
+    grid.style.height = `${gridWidth}px`;
     for (let i = 0; i < size * size; i++) {
         const square = document.createElement('div');
         square.classList.toggle('square');
-        square.style.width = `${Math.round(gridWidth / size)}px`
+        square.style.width = `${gridWidth / size}px`
         grid.appendChild(square);
     }
 }
