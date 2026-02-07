@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+}
+
+.container  {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 24px;
+    gap: 24px;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square {
+    width: 16px;
+    height: 16px;
+    outline: .1px solid black;
+
+    &:hover {
+        background-color: black;
+    }
+}
